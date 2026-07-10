@@ -1,0 +1,458 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg-app: oklch(16% 0.01 260);
+  --bg-header: oklch(20% 0.03 260);
+
+  --grad-sunny: linear-gradient(160deg, oklch(58% 0.16 55), oklch(38% 0.11 30));
+  --grad-clear-night: linear-gradient(160deg, oklch(32% 0.09 280), oklch(16% 0.05 270));
+  --grad-cloudy: linear-gradient(160deg, oklch(46% 0.03 250), oklch(30% 0.02 250));
+  --grad-rain: linear-gradient(160deg, oklch(46% 0.09 230), oklch(26% 0.06 250));
+  --grad-storm: linear-gradient(160deg, oklch(36% 0.09 300), oklch(19% 0.05 290));
+  --grad-snow: linear-gradient(160deg, oklch(55% 0.03 240), oklch(35% 0.02 250));
+
+  --radius-card: 20px;
+  --radius-pill: 100px;
+  --gap: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-app);
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1;
+  padding: 16px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: var(--bg-header);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar__logo {
+  font-weight: 700;
+  font-size: 40px;
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+}
+
+.navbar__link-icone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 10px;
+  margin-bottom: -10px;
+}
+
+.navbar__icona {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+}
+
+/* colore acceso solo per l'icona della pagina in cui ci troviamo */
+.navbar__icona--attiva {
+  color: #ffb648;
+  opacity: 1;
+}
+
+.navbar__icona:hover {
+  opacity: 1;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- SearchBar ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  flex: 1;
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  flex: 1;
+}
+
+.search-bar__icona {
+  opacity: 0.6;
+}
+
+/* ---------- Card città (Home) ---------- */
+.lista-citta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+@media (min-width: 700px) {
+  .lista-citta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+.citta-card {
+  border-radius: var(--radius-card);
+  padding: 20px;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.citta-card__nome {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.citta-card__condizione {
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+
+.citta-card__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.citta-card__destra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.citta-card__temp {
+  font-weight: 900;
+  font-size: 28px;
+}
+
+/* ---------- Ricerca ---------- */
+.sezione-titolo {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 20px 0 10px;
+}
+
+.risultato-riga {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: white;
+}
+
+.risultato-riga__nome {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.risultato-riga__paese {
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.risultato-riga__destra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.ricerche-recenti {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  font-weight: 500;
+  font-size: 13px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------- Dettaglio ---------- */
+.dettaglio {
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+.dettaglio__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+}
+
+.dettaglio__header a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.dettaglio__titolo {
+  font-weight: 700;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero {
+  text-align: center;
+  padding: 20px 20px 30px;
+}
+
+.hero__temp {
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+.hero__riga {
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.orario-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 0 20px 20px;
+}
+
+.orario-scroll__colonna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 40px;
+}
+
+.orario-scroll__ora {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.orario-scroll__temp {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.pannello {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  border-radius: 24px 24px 0 0;
+  padding: 20px;
+}
+
+.giorno-riga {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+}
+
+.giorno-riga__barra {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.giorno-riga__barra-fill {
+  position: absolute;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7fb8ff, #ffb648);
+}
+
+.indicatori-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (min-width: 700px) {
+  .dettaglio__contenuto {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+  .dettaglio__colonna-sinistra {
+    width: 260px;
+    flex-shrink: 0;
+  }
+  .dettaglio__colonna-destra {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 20px;
+  }
+  .indicatori-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.indicatore {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.indicatore__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.indicatore__valore {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+/* ---------- Loader ---------- */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.loader__spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #ffb648;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- WeatherIcon (forme geometriche semplici) ---------- */
+.icona {
+  position: relative;
+  display: inline-block;
+}
+
+.icona__cerchio {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.icona__ellisse {
+  width: 100%;
+  height: 70%;
+  border-radius: 50% 50% 45% 45%;
+  margin-top: 15%;
+}
+
+.icona--pioggia .icona__goccia,
+.icona--storm .icona__fulmine {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icona--pioggia .icona__goccia {
+  width: 3px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.icona--storm .icona__fulmine {
+  width: 6px;
+  height: 12px;
+  clip-path: polygon(60% 0%, 0% 60%, 45% 60%, 40% 100%, 100% 40%, 55% 40%);
+}
+
+.icona--neve .icona__fiocco {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+}

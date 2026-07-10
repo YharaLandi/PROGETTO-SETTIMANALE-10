@@ -1,16 +1,23 @@
-# React + Vite
+# App Meteo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Progetto React (Vite) — app meteo con Homepage, Ricerca e Dettaglio città.
 
-Currently, two official plugins are available:
+## Avvio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+npm install
+npm run dev
+```
 
-## React Compiler
+## Tecnologie usate
+- **react-router-dom**: routing tra Home (`/`), Ricerca (`/ricerca`), Dettaglio (`/dettaglio/:id`)
+- **Lift state up**: lista città e cronologia ricerche vivono in `App.jsx` e vengono passate come props
+- **useEffect (mount/update)**: negli hook `useMeteoAttuale` / `useMeteoDettaglio` (src/hooks/useMeteo.js) per il fetch dati al primo render e quando cambiano lat/lon; in `Ricerca.jsx` per la ricerca live con debounce
+- **Custom hooks**: `useMeteoAttuale`, `useMeteoDettaglio`
+- Dati meteo reali da **Open-Meteo** (nessuna API key richiesta)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Struttura
+- `src/pages` — le 3 schermate
+- `src/components` — componenti riutilizzabili (Navbar, Footer, SearchBar, WeatherIcon, ecc.)
+- `src/hooks` — custom hook per il fetch meteo
+- `src/data` — lista capitali + funzioni di chiamata API
