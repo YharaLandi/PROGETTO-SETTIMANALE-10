@@ -12,6 +12,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Recupera il percorso originale salvato da 404.html (routing SPA su GitHub Pages).
+      (function () {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          window.history.replaceState(
+            null,
+            '',
+            window.location.pathname.replace(/\/$/, '') + p + window.location.hash
+          );
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

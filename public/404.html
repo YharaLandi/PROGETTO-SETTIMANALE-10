@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>App Meteo</title>
+    <script>
+      // Trucco per far funzionare il routing di react-router-dom su GitHub Pages:
+      // GitHub Pages non conosce le rotte lato client, quindi reindirizza
+      // ogni URL sconosciuto a index.html passando il percorso originale come query string.
+      var segmentCount = 1; // = numero di segmenti del base path "/PROGETTO-SETTIMANALE-10/"
+      var l = window.location;
+      var path = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        path + '/?p=' + encodeURIComponent(l.pathname.slice(path.length)) + l.search + l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
