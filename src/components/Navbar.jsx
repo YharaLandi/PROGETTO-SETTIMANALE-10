@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 // Barra in alto, sempre visibile su tutte le pagine.
 // Struttura: logo a sinistra, subito accanto le due icone di navigazione
-// (Home e Cerca), come nella navbar di riferimento vista a lezione.
 function Navbar() {
   return (
     <div className="navbar">
